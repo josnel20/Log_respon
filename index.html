@@ -6,7 +6,14 @@
 	<link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
 	<script src="https://kit.fontawesome.com/a81368914c.js"></script>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="serviceWorker (1).js">
+	<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>	 
+	<script src="serviceWorker.js"></script>
+        <link rel="manifest" href="manifest.webmanifest">
+        <meta content='yes' name='apple-mobile-web-app-capable'/>
+        <meta content='yes' name='mobile-web-app-capable'/>
+        <meta name="apple-mobile-web-app-status-bar" content="#aa7700">
+        <meta name="theme-color" content="black">
+        <link rel="apple-touch-icon" href="img/icon.png">
 </head>
 <body>
 	
@@ -42,5 +49,19 @@
         </div>
     </div>
     <script type="text/javascript" src="js/main.js"></script>
+
+	<script>
+        $(document).ready(function(){
+            if ('serviceWorker' in navigator) {
+                console.log('has serviceworker');
+                window.addEventListener('load', () => {
+                    navigator.serviceWorker.register('serviceWorker.js')
+                        .then((registration) => {
+                            console.log('Service worker registered.', registration);
+                        });
+                });
+            }
+         });
+        </script>
 </body>
 </html>
